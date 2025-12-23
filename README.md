@@ -1,5 +1,5 @@
 ### clone the repo
-- `git clone repoURL`
+- `git clone https://github.com/musaraf0101/MERN-B1.git`
 
 ### install node package
 - `npm install`
