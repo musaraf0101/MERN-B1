@@ -1,21 +1,14 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const App = () => {
-  const [value, setValue] = useState(0);
-
-  const increase = () => {
-    setValue(value + 1);
-  };
-  const decrese = () => {
-    if (value > 0) {
-      setValue(value - 1);
-    }
-  };
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    console.log("use Effect running", count);
+  },[count]);
   return (
     <div>
-      <p>{value}</p>
-      <button onClick={increase}>+</button>
-      <button onClick={decrese}>-</button>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>Click</button>
     </div>
   );
 };
