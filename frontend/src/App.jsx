@@ -1,21 +1,26 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const App = () => {
-  const [value, setValue] = useState(0);
+  const [post, setPost] = useState([]);
 
-  const increase = () => {
-    setValue(value + 1);
+  const fetchPost = async () => {
+    const posts = await axios.get("https://jsonplaceholder.typicode.com/posts");
+
+    setPost(posts.data);
   };
-  const decrese = () => {
-    if (value > 0) {
-      setValue(value - 1);
-    }
-  };
+
+  useEffect(() => {
+    fetchPost();
+  }, []);
+
   return (
     <div>
-      <p>{value}</p>
-      <button onClick={increase}>+</button>
-      <button onClick={decrese}>-</button>
+      <ul>
+        {post.map((u) => (
+          <li>{u.title}</li>
+        ))}
+      </ul>
     </div>
   );
 };
